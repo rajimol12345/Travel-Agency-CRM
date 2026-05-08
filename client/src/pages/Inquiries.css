@@ -1,0 +1,105 @@
+.page-container {
+  padding: 2rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #64748b;
+}
+
+.card-container {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  overflow: visible;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.professional-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.professional-table th {
+  padding: 1rem 1.5rem;
+  background: #f8fafc;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.professional-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  color: #0f172a;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-new { background: #dbeafe; color: #1e40af; }
+.status-active { background: #dcfce7; color: #166534; }
+.status-closed { background: #f1f5f9; color: #475569; }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  width: 300px;
+  gap: 0.5rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.primary-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #1d4ed8;
+}

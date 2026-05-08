@@ -1,0 +1,47 @@
+.finance-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.summary-label {
+  display: block;
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.transaction-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.type-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.indicator-income { background: #10b981; }
+.indicator-expense { background: #ef4444; }
+
+@media (max-width: 1024px) {
+  .finance-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

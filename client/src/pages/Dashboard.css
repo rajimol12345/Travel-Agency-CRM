@@ -1,0 +1,218 @@
+.dashboard-container {
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+}
+
+.dashboard-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.dashboard-header p {
+  color: #64748b;
+  margin: 0.5rem 0 0 0;
+  font-size: 1.1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4);
+}
+
+.secondary-btn {
+  background: white;
+  color: var(--primary-dark);
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Stats Section */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.stat-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+}
+
+.trend-up { background: rgba(16, 185, 129, 0.1); color: var(--success-green); }
+.trend-down { background: rgba(239, 68, 68, 0.1); color: var(--danger-red); }
+
+.stat-card h3 {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Charts & Tables Section */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+.dashboard-grid > .card-container {
+  grid-column: span 12;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid > .card-container.main-chart {
+    grid-column: span 8;
+  }
+  .dashboard-grid > .card-container.side-content {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    gap: 1.25rem;
+  }
+  .card-container {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+  .stat-card {
+    padding: 1.5rem;
+  }
+  .stat-value {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions {
+    width: 100%;
+  }
+  .header-actions button {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Analytics Section */
+.analytics-section {
+  margin-bottom: 2.5rem;
+
+.chart-wrapper {
+  padding: 1.5rem;
+  height: 350px;
+  width: 100%;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
