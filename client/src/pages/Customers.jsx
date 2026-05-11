@@ -1,21 +1,28 @@
 import React from 'react';
 import './Inquiries.css'; // Reusing base page styles
-import { Search, Plus, Filter, MoreVertical, User, Mail, Phone, MapPin, Download } from 'lucide-react';
+import { Search, Plus, Filter, User, Mail, Phone, MapPin, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { exportToCSV } from '../utils/exportUtils';
+import RowActionMenu from '../components/RowActionMenu';
 
 const Customers = () => {
     const navigate = useNavigate();
     
-    const customers = [
+    const [customers, setCustomers] = React.useState([
         { id: 1, name: 'John Doe', email: 'john@example.com', phone: '+44 7700 900077', status: 'Active', bookings: 12, segment: 'VIP' },
         { id: 2, name: 'Sarah Smith', email: 'sarah@example.com', phone: '+44 7700 900088', status: 'Active', bookings: 5, segment: 'Regular' },
         { id: 3, name: 'Mike Johnson', email: 'mike@example.com', phone: '+44 7700 900099', status: 'Inactive', bookings: 1, segment: 'New' },
         { id: 4, name: 'Emma Wilson', email: 'emma@example.com', phone: '+44 7700 900011', status: 'Active', bookings: 8, segment: 'Corporate' },
-    ];
+    ]);
 
     const handleExport = () => {
         exportToCSV(customers, 'customer_directory');
+    };
+
+    const removeCustomer = (id) => {
+        const confirmed = window.confirm('Delete this customer from the list?');
+        if (!confirmed) return;
+        setCustomers((prev) => prev.filter((customer) => customer.id !== id));
     };
 
     return (
@@ -102,9 +109,13 @@ const Customers = () => {
                                         </span>
                                     </td>
                                     <td>
-                                        <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}>
-                                            <MoreVertical size={18} />
-                                        </button>
+                                        <RowActionMenu
+                                            actions={[
+                                                { label: 'View customer', onClick: () => navigate('/customers/add') },
+                                                { label: 'Send email', onClick: () => (window.location.href = `mailto:${customer.email}`) },
+                                                { label: 'Delete customer', onClick: () => removeCustomer(customer.id), danger: true },
+                                            ]}
+                                        />
                                     </td>
                                 </tr>
                             ))}

@@ -1,7 +1,8 @@
 import React from 'react';
 import './Inquiries.css';
 import { useNavigate } from 'react-router-dom';
-import { Search, Plus, Filter, MoreVertical, MessageSquare } from 'lucide-react';
+import { Search, Plus, Filter, MessageSquare } from 'lucide-react';
+import RowActionMenu from '../components/RowActionMenu';
 
 const Inquiries = () => {
     const navigate = useNavigate();
@@ -9,11 +10,21 @@ const Inquiries = () => {
     const [statusFilter, setStatusFilter] = React.useState('All');
     const [isFilterOpen, setIsFilterOpen] = React.useState(false);
 
-    const inquiries = [
+    const [inquiries, setInquiries] = React.useState([
         { id: 'INQ-001', customer: 'Alice Johnson', subject: 'Summer Trip to Swiss Alps', status: 'New', date: 'Oct 24, 2023' },
         { id: 'INQ-002', customer: 'Bob Smith', subject: 'Business Flight to Tokyo', status: 'Active', date: 'Oct 23, 2023' },
         { id: 'INQ-003', customer: 'Charlie Brown', subject: 'Family Vacation in Florida', status: 'Closed', date: 'Oct 20, 2023' },
-    ];
+    ]);
+
+    const updateInquiryStatus = (id, status) => {
+        setInquiries((prev) => prev.map((inq) => (inq.id === id ? { ...inq, status } : inq)));
+    };
+
+    const deleteInquiry = (id) => {
+        const confirmed = window.confirm('Delete this inquiry?');
+        if (!confirmed) return;
+        setInquiries((prev) => prev.filter((inq) => inq.id !== id));
+    };
 
     const filteredInquiries = inquiries.filter(inq => {
         const matchesSearch = inq.customer.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -130,9 +141,16 @@ const Inquiries = () => {
                                         </td>
                                         <td style={{ color: '#64748b' }}>{inq.date}</td>
                                         <td>
-                                            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}>
-                                                <MoreVertical size={18} />
-                                            </button>
+                                            <RowActionMenu
+                                                actions={[
+                                                    { label: 'View details', onClick: () => navigate('/inquiries/add') },
+                                                    {
+                                                        label: inq.status === 'Closed' ? 'Mark Active' : 'Mark Closed',
+                                                        onClick: () => updateInquiryStatus(inq.id, inq.status === 'Closed' ? 'Active' : 'Closed'),
+                                                    },
+                                                    { label: 'Delete inquiry', onClick: () => deleteInquiry(inq.id), danger: true },
+                                                ]}
+                                            />
                                         </td>
                                     </tr>
                                 ))

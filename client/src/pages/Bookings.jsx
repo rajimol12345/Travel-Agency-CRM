@@ -4,6 +4,7 @@ import api from '../services/api';
 import './Bookings.css';
 import './Inquiries.css';
 import { exportToCSV } from '../utils/exportUtils';
+import RowActionMenu from '../components/RowActionMenu';
 import { 
     Plus, 
     Plane, 
@@ -13,7 +14,6 @@ import {
     Download, 
     Search, 
     Filter, 
-    MoreHorizontal, 
     Calendar, 
     DollarSign, 
     CheckCircle, 
@@ -83,6 +83,12 @@ const Bookings = () => {
         (b.customer?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
          b.type?.toLowerCase().includes(searchTerm.toLowerCase()))
     );
+
+    const removeBooking = (id) => {
+        const confirmed = window.confirm('Delete this reservation from the list?');
+        if (!confirmed) return;
+        setBookings((prev) => prev.filter((booking) => booking._id !== id));
+    };
 
     return (
         <div className="page-container">
@@ -234,9 +240,13 @@ const Bookings = () => {
                                                 <button className="circle-btn" onClick={() => handleDownload(b._id)}>
                                                     <Download size={16} />
                                                 </button>
-                                                <button className="circle-btn">
-                                                    <MoreHorizontal size={16} />
-                                                </button>
+                                                <RowActionMenu
+                                                    actions={[
+                                                        { label: 'Open reservation', onClick: () => navigate('/bookings/add') },
+                                                        { label: 'Download itinerary', onClick: () => handleDownload(b._id) },
+                                                        { label: 'Delete reservation', onClick: () => removeBooking(b._id), danger: true },
+                                                    ]}
+                                                />
                                             </div>
                                         </td>
                                     </tr>
