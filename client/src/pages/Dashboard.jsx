@@ -8,10 +8,8 @@ import {
     Wallet, 
     ArrowUpRight, 
     ArrowDownRight,
-    MoreVertical,
     FileText,
-    Plus,
-    Calendar
+    Plus
 } from 'lucide-react';
 import {
   Chart as ChartJS,
@@ -130,7 +128,7 @@ const Dashboard = () => {
 
             <div className="stats-grid">
                 {stats.map((item, index) => (
-                    <div key={index} className="stat-card" onClick={() => navigate('/finance')} style={{ cursor: 'pointer' }}>
+                    <div key={index} className="stat-card" onClick={() => navigate('/finance')}>
                         <div className="stat-header">
                             <div className="stat-icon-wrapper" style={{ backgroundColor: `${item.color}15`, color: item.color }}>
                                 <item.icon size={24} />
@@ -151,21 +149,21 @@ const Dashboard = () => {
                         Revenue Growth
                         <TrendingUp size={20} color="#2563eb" />
                     </h3>
-                    <div style={{ height: '350px' }}>
+                    <div className="chart-height-lg">
                         <Line data={revenueData} options={commonOptions} />
                     </div>
                 </div>
                 
                 <div className="card-container side-content">
                     <h3>Weekly Bookings</h3>
-                    <div style={{ height: '300px' }}>
+                    <div className="chart-height-md">
                         <Bar data={bookingData} options={commonOptions} />
                     </div>
                 </div>
 
                 <div className="card-container side-content">
                     <h3>Inquiry Sources</h3>
-                    <div style={{ height: '300px' }}>
+                    <div className="chart-height-md">
                         <Doughnut data={sourceData} options={{ 
                             ...commonOptions, 
                             scales: undefined, 
@@ -177,11 +175,10 @@ const Dashboard = () => {
 
             <div className="dashboard-grid" style={{ marginTop: '2rem' }}>
                 <div className="card-container main-chart">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                        <h3 style={{ margin: 0 }}>Recent Transactions</h3>
+                    <div className="card-header">
+                        <h3>Recent Transactions</h3>
                         <button 
-                            className="secondary-btn" 
-                            style={{ padding: '0.4rem 1rem', fontSize: '0.875rem' }}
+                            className="secondary-btn table-action-btn"
                             onClick={() => navigate('/finance')}
                         >
                             View All
@@ -206,21 +203,21 @@ const Dashboard = () => {
                                 ].map((row) => (
                                     <tr key={row.id}>
                                         <td>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                                <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.75rem', color: '#2563eb' }}>
+                                            <div className="client-cell">
+                                                <div className="client-avatar">
                                                     {row.name.charAt(0)}
                                                 </div>
-                                                <span style={{ fontWeight: 600 }}>{row.name}</span>
+                                                <span className="client-name">{row.name}</span>
                                             </div>
                                         </td>
                                         <td>{row.service}</td>
-                                        <td style={{ fontWeight: 700 }}>{row.amount}</td>
+                                        <td className="amount-cell">{row.amount}</td>
                                         <td>
-                                            <span className={`status-badge status-${row.status.toLowerCase()}`} style={{ padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700 }}>
+                                            <span className={`status-badge status-${row.status.toLowerCase()}`}>
                                                 {row.status}
                                             </span>
                                         </td>
-                                        <td style={{ color: '#64748b', fontSize: '0.75rem' }}>{row.time}</td>
+                                        <td className="activity-time">{row.time}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -230,18 +227,18 @@ const Dashboard = () => {
 
                 <div className="card-container side-content">
                     <h3>Recent Operations</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div className="operations-list">
                         {[
                             { id: 1, text: 'New booking for Dubai', time: '2m ago', color: '#2563eb' },
                             { id: 2, text: 'Payment received from Sarah', time: '45m ago', color: '#10b981' },
                             { id: 3, text: 'System update completed', time: '2h ago', color: '#8b5cf6' },
                             { id: 4, text: 'New inquiry from Mike', time: '3h ago', color: '#f59e0b' },
                         ].map((act) => (
-                            <div key={act.id} style={{ display: 'flex', gap: '1rem', position: 'relative' }}>
-                                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: act.color, marginTop: '4px', flexShrink: 0, boxShadow: `0 0 10px ${act.color}40` }}></div>
-                                <div>
-                                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b' }}>{act.text}</div>
-                                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{act.time}</div>
+                            <div key={act.id} className="operation-item">
+                                <div className="operation-dot" style={{ backgroundColor: act.color }}></div>
+                                <div className="operation-content">
+                                    <div className="operation-text">{act.text}</div>
+                                    <div className="operation-time">{act.time}</div>
                                 </div>
                             </div>
                         ))}

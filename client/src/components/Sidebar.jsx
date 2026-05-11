@@ -1,30 +1,19 @@
 import React from 'react';
 import './Sidebar.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-import {
-    LayoutDashboard,
-    ClipboardList,
-    Calendar,
-    PlaneTakeoff,
-    UserCheck,
-    Globe,
-    CreditCard,
-    Settings,
-    LogOut
-} from 'lucide-react';
 
 import logo from '../assets/logo.png';
 
 const navItems = [
-    { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { name: 'Inquiries', path: '/inquiries', icon: ClipboardList },
-    { name: 'Customers', path: '/customers', icon: UserCheck },
-    { name: 'Bookings', path: '/bookings', icon: Calendar },
-    { name: 'Visa Tracker', path: '/visa-tracker', icon: PlaneTakeoff },
-    { name: 'B2B Agents', path: '/agents', icon: UserCheck },
-    { name: 'Packages', path: '/packages', icon: Globe },
-    { name: 'Finance', path: '/finance', icon: CreditCard },
-    { name: 'Settings', path: '/settings', icon: Settings },
+    { name: 'Dashboard', path: '/', icon: 'dashboard' },
+    { name: 'Inquiries', path: '/inquiries', icon: 'assignment' },
+    { name: 'Customers', path: '/customers', icon: 'groups' },
+    { name: 'Bookings', path: '/bookings', icon: 'event' },
+    { name: 'Visa Tracker', path: '/visa-tracker', icon: 'flight_takeoff' },
+    { name: 'B2B Agents', path: '/agents', icon: 'badge' },
+    { name: 'Packages', path: '/packages', icon: 'public' },
+    { name: 'Finance', path: '/finance', icon: 'credit_card' },
+    { name: 'Settings', path: '/settings', icon: 'settings' },
 ];
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -54,7 +43,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                 `nav-link-item ${isActive ? "active-link" : ""}`
                             }
                         >
-                            <item.icon size={20} className="nav-icon" />
+                            <span className="material-symbols-outlined nav-icon ms-icon">{item.icon}</span>
                             <span className="nav-label">{item.name}</span>
                         </NavLink>
                     ))}
@@ -62,7 +51,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
                 <div className="sidebar-footer">
                     <button onClick={handleLogout} className="sign-out-btn">
-                        <LogOut size={20} className="nav-icon" />
+                        <span className="material-symbols-outlined nav-icon ms-icon">logout</span>
                         <span className="nav-label">Sign Out</span>
                     </button>
                 </div>
