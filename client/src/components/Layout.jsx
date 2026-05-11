@@ -33,6 +33,10 @@ const Layout = () => {
         setNotifications(notifications.map(n => ({ ...n, unread: false })));
     };
 
+    const clearAllNotifications = () => {
+        setNotifications([]);
+    };
+
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
     const handleLogout = () => {
@@ -67,18 +71,25 @@ const Layout = () => {
                                 <div className="header-dropdown notifications-dropdown">
                                     <div className="dropdown-header">
                                         <h4>Notifications</h4>
-                                        <span onClick={markAllRead} className="dropdown-link">Mark all read</span>
+                                        <div className="dropdown-actions">
+                                            <span onClick={markAllRead} className="dropdown-link">Mark all read</span>
+                                            <span onClick={clearAllNotifications} className="dropdown-link danger-link">Clear all</span>
+                                        </div>
                                     </div>
                                     <div className="dropdown-list">
-                                        {notifications.map(n => (
-                                            <div key={n.id} className="notification-item">
-                                                <div className="notification-dot" style={{ background: n.unread ? '#2563eb' : '#cbd5e1' }}></div>
-                                                <div>
-                                                    <div className="notification-title">{n.title}</div>
-                                                    <div className="notification-text">{n.text}</div>
+                                        {notifications.length > 0 ? (
+                                            notifications.map(n => (
+                                                <div key={n.id} className="notification-item">
+                                                    <div className="notification-dot" style={{ background: n.unread ? '#2563eb' : '#cbd5e1' }}></div>
+                                                    <div>
+                                                        <div className="notification-title">{n.title}</div>
+                                                        <div className="notification-text">{n.text}</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))
+                                        ) : (
+                                            <div className="notifications-empty">No notifications available.</div>
+                                        )}
                                     </div>
                                 </div>
                             )}
