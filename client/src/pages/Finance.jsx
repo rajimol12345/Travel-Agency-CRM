@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Finance = () => {
     const [transactions, setTransactions] = useState([
-        { id: 'TX-5501', date: '2023-10-24', category: 'Flight Booking', amount: '+£1,250', type: 'Income', status: 'Completed' },
-        { id: 'TX-5502', date: '2023-10-23', category: 'Hotel Commission', amount: '+£340', type: 'Income', status: 'Pending' },
-        { id: 'TX-5503', date: '2023-10-22', category: 'Software Subscription', amount: '-£45', type: 'Expense', status: 'Completed' },
-        { id: 'TX-5504', date: '2023-10-21', category: 'B2B Agent Payout', amount: '-£800', type: 'Expense', status: 'Completed' },
+        { id: 'TX-5501', date: '2023-10-24', category: 'Flight Booking', amount: '+$1,250', type: 'Income', status: 'Completed' },
+        { id: 'TX-5502', date: '2023-10-23', category: 'Hotel Commission', amount: '+$340', type: 'Income', status: 'Pending' },
+        { id: 'TX-5503', date: '2023-10-22', category: 'Software Subscription', amount: '-$45', type: 'Expense', status: 'Completed' },
+        { id: 'TX-5504', date: '2023-10-21', category: 'B2B Agent Payout', amount: '-$800', type: 'Expense', status: 'Completed' },
     ]);
     const navigate = useNavigate();
 
@@ -36,25 +36,25 @@ const Finance = () => {
             <div className="finance-summary">
                 <div className="summary-card">
                     <span className="summary-label">Total Balance</span>
-                    <span className="summary-value">£45,200.00</span>
+                    <span className="summary-value">$45,200.00</span>
                 </div>
                 <div className="summary-card">
                     <span className="summary-label">Monthly Income</span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <ArrowUpCircle size={20} color="#10b981" />
-                        <span className="summary-value">£8,450.00</span>
+                        <span className="summary-value">$8,450.00</span>
                     </div>
                 </div>
                 <div className="summary-card">
                     <span className="summary-label">Monthly Expenses</span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <ArrowDownCircle size={20} color="#ef4444" />
-                        <span className="summary-value">£2,100.00</span>
+                        <span className="summary-value">$2,100.00</span>
                     </div>
                 </div>
                 <div className="summary-card">
                     <span className="summary-label">Pending Payouts</span>
-                    <span className="summary-value">£1,240.00</span>
+                    <span className="summary-value">$1,240.00</span>
                 </div>
             </div>
 

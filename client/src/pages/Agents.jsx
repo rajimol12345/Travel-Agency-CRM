@@ -1,7 +1,7 @@
 import React from 'react';
 import './Agents.css';
 import './Inquiries.css';
-import { UserPlus, Mail, MapPin, Search, Filter, Handshake, PoundSterling, TrendingUp, Pencil } from 'lucide-react';
+import { UserPlus, Mail, MapPin, Search, Filter, Handshake, DollarSign, TrendingUp, Pencil } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Agents = () => {
@@ -64,8 +64,8 @@ const Agents = () => {
                 <div className="agent-summary-card">
                     <span className="summary-title">Total Revenue</span>
                     <div className="summary-value-row">
-                        <PoundSterling size={18} />
-                        <strong>£{totalRevenue.toLocaleString()}</strong>
+                        <DollarSign size={18} />
+                        <strong>${totalRevenue.toLocaleString()}</strong>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ const Agents = () => {
                                         <span className="agent-stat-label">Bookings</span>
                                     </div>
                                     <div className="agent-stat">
-                                        <span className="agent-stat-value">£{agent.revenue.toLocaleString()}</span>
+                                        <span className="agent-stat-value">${agent.revenue.toLocaleString()}</span>
                                         <span className="agent-stat-label">Total Revenue</span>
                                     </div>
                                     <div className="agent-stat">

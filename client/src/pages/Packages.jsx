@@ -139,7 +139,7 @@ const Packages = () => {
                             </div>
                             <div className="info-item">
                                 <label>Price Point</label>
-                                <span>£{pkg.price.toLocaleString()}</span>
+                                <span>${pkg.price.toLocaleString()}</span>
                             </div>
                         </div>
 

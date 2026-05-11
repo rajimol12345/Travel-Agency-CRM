@@ -43,7 +43,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
     
     const stats = [
-        { title: 'Total Revenue', value: '£24,500', icon: Wallet, change: '+12.5%', isPositive: true, color: '#3b82f6' },
+        { title: 'Total Revenue', value: '$24,500', icon: Wallet, change: '+12.5%', isPositive: true, color: '#3b82f6' },
         { title: 'Active Inquiries', value: '48', icon: Users, change: '+5.2%', isPositive: true, color: '#10b981' },
         { title: 'Pending Visas', value: '12', icon: PlaneTakeoff, change: '-2.1%', isPositive: false, color: '#f59e0b' },
         { title: 'Conversion Rate', value: '18.2%', icon: TrendingUp, change: '+1.4%', isPositive: true, color: '#8b5cf6' },
@@ -197,9 +197,9 @@ const Dashboard = () => {
                             </thead>
                             <tbody>
                                 {[
-                                    { id: 1, name: 'John Doe', service: 'Dubai Tour', amount: '£850', status: 'Confirmed', time: '2m ago' },
-                                    { id: 2, name: 'Sarah Smith', service: 'Visa Processing', amount: '£120', status: 'Pending', time: '1h ago' },
-                                    { id: 3, name: 'Mike Johnson', service: 'Flight Ticket', amount: '£450', status: 'Confirmed', time: '3h ago' },
+                                    { id: 1, name: 'John Doe', service: 'Dubai Tour', amount: '$850', status: 'Confirmed', time: '2m ago' },
+                                    { id: 2, name: 'Sarah Smith', service: 'Visa Processing', amount: '$120', status: 'Pending', time: '1h ago' },
+                                    { id: 3, name: 'Mike Johnson', service: 'Flight Ticket', amount: '$450', status: 'Confirmed', time: '3h ago' },
                                 ].map((row) => (
                                     <tr key={row.id}>
                                         <td>

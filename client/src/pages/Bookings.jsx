@@ -131,7 +131,7 @@ const Bookings = () => {
                     <span className="summary-label">Total Value</span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <DollarSign size={20} color="#f59e0b" />
-                        <span className="summary-value">£{bookings.reduce((sum, b) => sum + b.totalAmount, 0).toLocaleString()}</span>
+                        <span className="summary-value">${bookings.reduce((sum, b) => sum + b.totalAmount, 0).toLocaleString()}</span>
                     </div>
                 </div>
                 <div className="summary-card">
@@ -213,7 +213,7 @@ const Bookings = () => {
                                             <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{b.customer?.email}</div>
                                         </td>
                                         <td>
-                                            <span style={{ fontWeight: 700, fontSize: '1rem' }}>£{b.totalAmount.toLocaleString()}</span>
+                                            <span style={{ fontWeight: 700, fontSize: '1rem' }}>${b.totalAmount.toLocaleString()}</span>
                                         </td>
                                         <td>
                                             <span className={`status-badge status-${b.status.toLowerCase() === 'confirmed' ? 'active' : 'pending'}`}>
