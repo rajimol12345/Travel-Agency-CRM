@@ -153,6 +153,26 @@
   font-size: 0.9rem;
 }
 
+.agent-edit-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #dbe4f0;
+  background: #ffffff;
+  color: #2563eb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.agent-edit-btn:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
 @media (max-width: 1100px) {
   .agent-summary-grid {
     grid-template-columns: 1fr;

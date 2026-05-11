@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import api from '../services/api';
 import './Forms.css';
 import './Inquiries.css';
@@ -19,23 +19,29 @@ import {
 } from 'lucide-react';
 
 const AddAgent = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { id } = useParams();
+    const editingAgent = location.state?.agent;
+    const isEditMode = Boolean(id);
+
     const [formData, setFormData] = useState({
-        name: '',
-        contactPerson: '',
-        email: '',
-        phone: '',
-        location: '',
-        status: 'Active',
-        commissionRate: '10'
+        name: editingAgent?.name || '',
+        contactPerson: editingAgent?.contact || '',
+        email: editingAgent?.email || '',
+        phone: editingAgent?.phone || '',
+        location: editingAgent?.location || '',
+        status: editingAgent?.status || 'Active',
+        commissionRate: editingAgent?.commissionRate || '10'
     });
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            // In a real app: await api.post('/agents', formData);
+            // In a real app:
+            // isEditMode ? await api.put(`/agents/${id}`, formData) : await api.post('/agents', formData);
             setTimeout(() => {
                 setLoading(false);
                 navigate('/agents');
@@ -63,8 +69,12 @@ const AddAgent = () => {
                             <ArrowLeft size={16} style={{ marginRight: '0.5rem' }} />
                             Back to Partners
                         </button>
-                        <h1>Register B2B Partner</h1>
-                        <p>Initialize a new business relationship and define commercial terms.</p>
+                        <h1>{isEditMode ? 'Edit B2B Partner' : 'Register B2B Partner'}</h1>
+                        <p>
+                            {isEditMode
+                                ? 'Update partner profile details and commercial terms.'
+                                : 'Initialize a new business relationship and define commercial terms.'}
+                        </p>
                     </div>
                 </header>
 
@@ -209,7 +219,11 @@ const AddAgent = () => {
                                 disabled={loading}
                                 className="primary-btn"
                             >
-                                {loading ? <Loader2 size={18} className="animate-spin" /> : <><Save size={18} /> Save</>}
+                                {loading ? (
+                                    <Loader2 size={18} className="animate-spin" />
+                                ) : (
+                                    <>{isEditMode ? 'Update Partner' : <><Save size={18} /> Save</>}</>
+                                )}
                             </button>
                         </div>
                     </form>

@@ -43,6 +43,7 @@ function App() {
                 <Route path="visa-tracker" element={<VisaTracker />} />
                 <Route path="agents" element={<Agents />} />
                 <Route path="agents/add" element={<AddAgent />} />
+                <Route path="agents/edit/:id" element={<AddAgent />} />
                 <Route path="finance" element={<Finance />} />
                 <Route path="finance/add" element={<AddTransaction />} />
             </Route>

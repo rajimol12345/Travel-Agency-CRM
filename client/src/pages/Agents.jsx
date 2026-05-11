@@ -1,9 +1,8 @@
 import React from 'react';
 import './Agents.css';
 import './Inquiries.css';
-import { UserPlus, Mail, MapPin, Search, Filter, Handshake, PoundSterling, TrendingUp } from 'lucide-react';
+import { UserPlus, Mail, MapPin, Search, Filter, Handshake, PoundSterling, TrendingUp, Pencil } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import RowActionMenu from '../components/RowActionMenu';
 
 const Agents = () => {
     const navigate = useNavigate();
@@ -30,14 +29,8 @@ const Agents = () => {
     const totalRevenue = filteredAgents.reduce((sum, agent) => sum + agent.revenue, 0);
     const totalBookings = filteredAgents.reduce((sum, agent) => sum + agent.bookings, 0);
 
-    const updateAgentStatus = (id, status) => {
-        setAgents((prev) => prev.map((agent) => (agent.id === id ? { ...agent, status } : agent)));
-    };
-
-    const removeAgent = (id) => {
-        const confirmed = window.confirm('Delete this agent from the directory?');
-        if (!confirmed) return;
-        setAgents((prev) => prev.filter((agent) => agent.id !== id));
+    const openEditPage = (agent) => {
+        navigate(`/agents/edit/${agent.id}`, { state: { agent } });
     };
 
     return (
@@ -131,16 +124,14 @@ const Agents = () => {
                                             {agent.status}
                                         </span>
                                     </div>
-                                    <RowActionMenu
-                                        actions={[
-                                            { label: 'Open profile', onClick: () => navigate('/agents/add') },
-                                            {
-                                                label: agent.status === 'Active' ? 'Mark Review' : 'Mark Active',
-                                                onClick: () => updateAgentStatus(agent.id, agent.status === 'Active' ? 'Review' : 'Active'),
-                                            },
-                                            { label: 'Delete agent', onClick: () => removeAgent(agent.id), danger: true },
-                                        ]}
-                                    />
+                                    <button
+                                        className="agent-edit-btn"
+                                        onClick={() => openEditPage(agent)}
+                                        aria-label={`Edit ${agent.name}`}
+                                        title="Edit Agent"
+                                    >
+                                        <Pencil size={16} />
+                                    </button>
                                 </div>
                             </div>
                         ))
