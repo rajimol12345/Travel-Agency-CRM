@@ -48,7 +48,7 @@ const Inquiries = () => {
             </header>
 
             <div className="card-container">
-                <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', flexWrap: 'wrap', gap: '1rem' }}>
+                <div className="table-toolbar">
                     <div className="search-bar">
                         <Search size={18} color="#94a3b8" />
                         <input 
@@ -59,30 +59,17 @@ const Inquiries = () => {
                         />
                     </div>
                     
-                    <div style={{ position: 'relative' }}>
+                    <div className="filter-dropdown-wrapper">
                         <button 
-                            className="primary-btn" 
+                            className="filter-trigger-btn"
                             onClick={() => setIsFilterOpen(!isFilterOpen)}
-                            style={{ backgroundColor: 'white', color: '#0f172a', border: '1px solid #e2e8f0' }}
                         >
-                            <Filter size={18} />
+                            <Filter size={16} />
                             {statusFilter === 'All' ? 'Filter' : `Status: ${statusFilter}`}
                         </button>
 
                         {isFilterOpen && (
-                            <div style={{ 
-                                position: 'absolute', 
-                                top: '100%', 
-                                right: 0, 
-                                marginTop: '0.5rem',
-                                background: 'white',
-                                border: '1px solid #e2e8f0',
-                                borderRadius: '8px',
-                                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                                zIndex: 10,
-                                minWidth: '150px',
-                                padding: '0.5rem'
-                            }}>
+                            <div className="filter-dropdown-menu">
                                 {['All', 'New', 'Active', 'Closed'].map(status => (
                                     <button
                                         key={status}
@@ -90,17 +77,7 @@ const Inquiries = () => {
                                             setStatusFilter(status);
                                             setIsFilterOpen(false);
                                         }}
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.5rem 1rem',
-                                            textAlign: 'left',
-                                            background: statusFilter === status ? '#f1f5f9' : 'none',
-                                            border: 'none',
-                                            borderRadius: '4px',
-                                            cursor: 'pointer',
-                                            fontSize: '0.875rem',
-                                            color: '#0f172a'
-                                        }}
+                                        className={`filter-dropdown-item ${statusFilter === status ? 'active' : ''}`}
                                     >
                                         {status}
                                     </button>

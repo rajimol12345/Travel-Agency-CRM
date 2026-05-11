@@ -81,12 +81,12 @@ const Agents = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <div className="agent-filter-group">
+                    <div className="filter-select-wrap">
                         <Filter size={16} color="#64748b" />
                         <select
                             value={regionFilter}
                             onChange={(e) => setRegionFilter(e.target.value)}
-                            className="agent-select"
+                            className="filter-select"
                         >
                             {regions.map((region) => (
                                 <option key={region} value={region}>

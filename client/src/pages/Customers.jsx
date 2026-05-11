@@ -7,6 +7,7 @@ import RowActionMenu from '../components/RowActionMenu';
 
 const Customers = () => {
     const navigate = useNavigate();
+    const [segmentFilter, setSegmentFilter] = React.useState('All');
     
     const [customers, setCustomers] = React.useState([
         { id: 1, name: 'John Doe', email: 'john@example.com', phone: '+44 7700 900077', status: 'Active', bookings: 12, segment: 'VIP' },
@@ -25,6 +26,11 @@ const Customers = () => {
         setCustomers((prev) => prev.filter((customer) => customer.id !== id));
     };
 
+    const filteredCustomers = customers.filter((customer) => {
+        if (segmentFilter === 'All') return true;
+        return customer.segment === segmentFilter;
+    });
+
     return (
         <div className="page-container">
             <header className="page-header">
@@ -39,19 +45,28 @@ const Customers = () => {
             </header>
 
             <div className="card-container">
-                <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', gap: '1rem', flexWrap: 'wrap' }}>
+                <div className="table-toolbar">
                     <div className="search-bar">
                         <Search size={18} color="#94a3b8" />
                         <input type="text" placeholder="Search by name, email, or ID..." />
                     </div>
-                    <div style={{ display: 'flex', gap: '0.75rem' }}>
-                        <button className="secondary-btn" style={{ background: 'white', border: '1px solid #e2e8f0', padding: '0.5rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <Filter size={18} />
-                            Segments
-                        </button>
+                    <div className="filter-inline-group">
+                        <div className="filter-select-wrap">
+                            <Filter size={16} />
+                            <select
+                                className="filter-select"
+                                value={segmentFilter}
+                                onChange={(e) => setSegmentFilter(e.target.value)}
+                            >
+                                <option value="All">All Segments</option>
+                                <option value="VIP">VIP</option>
+                                <option value="Regular">Regular</option>
+                                <option value="New">New</option>
+                                <option value="Corporate">Corporate</option>
+                            </select>
+                        </div>
                         <button 
-                            className="secondary-btn" 
-                            style={{ background: 'white', border: '1px solid #e2e8f0', padding: '0.5rem 1rem', borderRadius: '8px' }}
+                            className="filter-trigger-btn"
                             onClick={handleExport}
                         >
                             Export CSV
@@ -72,8 +87,9 @@ const Customers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {customers.map((customer) => (
-                                <tr key={customer.id}>
+                            {filteredCustomers.length > 0 ? (
+                                filteredCustomers.map((customer) => (
+                                    <tr key={customer.id}>
                                     <td>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                             <div style={{ width: 40, height: 40, borderRadius: '10px', background: '#eff6ff', color: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
@@ -117,8 +133,15 @@ const Customers = () => {
                                             ]}
                                         />
                                     </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="6" style={{ textAlign: 'center', padding: '2rem', color: '#64748b' }}>
+                                        No customers found for selected segment.
+                                    </td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
                 </div>

@@ -99,8 +99,7 @@ const Bookings = () => {
                 </div>
                 <div className="header-actions">
                     <button 
-                        className="secondary-btn" 
-                        style={{ background: 'white', border: '1px solid #e2e8f0', padding: '0.625rem 1.25rem', borderRadius: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                        className="filter-trigger-btn"
                         onClick={handleExport}
                     >
                         <Download size={18} />
@@ -145,7 +144,7 @@ const Bookings = () => {
             </div>
 
             <div className="card-container">
-                <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', gap: '1rem', flexWrap: 'wrap' }}>
+                <div className="table-toolbar">
                     <div className="search-bar" style={{ width: '350px' }}>
                         <Search size={18} color="#94a3b8" />
                         <input 
@@ -155,21 +154,20 @@ const Bookings = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <div style={{ display: 'flex', gap: '0.75rem' }}>
-                        <select 
-                            className="secondary-btn" 
-                            style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: 'white' }}
-                            value={typeFilter}
-                            onChange={(e) => setTypeFilter(e.target.value)}
-                        >
-                            <option value="All">All Services</option>
-                            <option value="Flight">Aviation</option>
-                            <option value="Hotel">Hospitality</option>
-                            <option value="Tour Package">Expeditions</option>
-                        </select>
-                        <button className="secondary-btn" style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: 'white' }}>
-                            <Filter size={18} />
-                        </button>
+                    <div className="filter-inline-group">
+                        <div className="filter-select-wrap">
+                            <Filter size={16} />
+                            <select 
+                                className="filter-select"
+                                value={typeFilter}
+                                onChange={(e) => setTypeFilter(e.target.value)}
+                            >
+                                <option value="All">All Services</option>
+                                <option value="Flight">Aviation</option>
+                                <option value="Hotel">Hospitality</option>
+                                <option value="Tour Package">Expeditions</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
