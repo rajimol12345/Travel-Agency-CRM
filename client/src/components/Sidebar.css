@@ -55,18 +55,49 @@
     text-decoration: none;
     color: #334155;
     border-radius: 10px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.nav-link-item:hover {
+.nav-link-item .nav-icon,
+.nav-link-item .nav-label {
+    color: #334155;
+    transition: color 0.2s ease;
+}
+
+.nav-link-item:not(.active-link):hover {
     background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.nav-link-item:not(.active-link):hover .nav-icon,
+.nav-link-item:not(.active-link):hover .nav-label {
     color: #1d4ed8;
 }
 
 .active-link {
-    background: #1d4ed8;
-    color: #ffffff !important;
+    background: #e8f0ff !important;
+    border-color: #c7dcff;
+    color: #1d4ed8 !important;
     font-weight: 600;
+}
+
+.active-link:hover {
+    background: #dce9ff !important;
+    border-color: #b7d1ff;
+    color: #1e40af !important;
+}
+
+.active-link .nav-icon,
+.active-link .nav-label {
+    color: #1d4ed8 !important;
+}
+
+.active-link:hover .nav-icon,
+.active-link:hover .nav-label {
+    color: #1e40af !important;
 }
 
 .nav-icon {
